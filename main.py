@@ -41,16 +41,16 @@ def setup_game(num_cards):
     CARDS = []
     num_matches = 0
     first_card = None
-    CARDS_PER_ROW = WIDTH//100
-    CARD_MARGIN = (WIDTH - (CARD_WIDTH * CARDS_PER_ROW)) / (CARDS_PER_ROW + 1)
-    CARD_PADDING = CARD_MARGIN
+    CARD_PADDING = 100
+    CARDS_PER_ROW = WIDTH//(CARD_WIDTH + CARD_PADDING)
+    print(CARDS_PER_ROW)
     CARD_POSITIONS = []
     for i in range(CARDS_PER_ROW):
-        for j in range(num_cards // CARDS_PER_ROW):
-            x = CARD_MARGIN + i * (CARD_WIDTH + CARD_PADDING)
-            y = CARD_MARGIN + j * (CARD_HEIGHT + CARD_PADDING)
+        for j in range(int(HEIGHT // (CARD_HEIGHT+CARD_PADDING))):
+            x = j * (CARD_WIDTH + CARD_PADDING) + CARD_WIDTH
+            y =i * (CARD_HEIGHT + CARD_PADDING) + CARD_HEIGHT
+            print(str(x) + ',' + str(y))
             CARD_POSITIONS.append((x, y))
-    CARD_POSITIONS = random.sample(CARD_POSITIONS, len(CARD_POSITIONS))
     for i in range(num_cards):
         card_image = CARD_IMAGES[i // 2]
         card_front_image = pygame.transform.scale(card_image, (CARD_WIDTH, CARD_HEIGHT))
